@@ -1,0 +1,515 @@
+[[sem]]
+id = "I"
+beschreibung = "SoSe 2025"
+
+  [[sem.course]]
+  code = "A.A3.b"  # Medizinische Entscheidungsunterstuetzung
+  note = 2
+
+  [[sem.course]]
+  code = "D.D10"  # Medizinische Sprachverarbeitung & Text Mining
+  note = 1
+
+  [[sem.course]]
+  code = "D.D2"  # Bioinformatik
+  note = 1
+  kfk = true  # will be part of the B colum not the D ...
+
+  [[sem.course]]
+  code = "A.A4.b"  # Bildgebende Verfahren in der Medizin
+  note = 2
+
+  [[sem.course]]
+  code = "D.D6.a"  # Systemanalyse
+  note = 1
+  kfk = true
+  
+  [[sem.course]]
+  code = "C.C5"  # Methoden der Medizin
+  note = 1
+
+  [[sem.course]]
+  code = "B.B1.a"  # KfK Praktikum
+  note = 0
+
+  [[sem.course]]
+  code = "M.GME"
+  note = 0
+
+  [[sem.course]]
+  code = "M.AML"
+  note = 5
+
+  [[sem.course]]
+  code = "A.A4.a"  # Biosignal
+  note = 5
+  versuch = 1
+
+  [[sem.course]]
+  code = "A.A1.a"  # Mod Klin IS
+  note = 5
+  versuch = 1
+
+  
+[[sem]]
+id = "II"
+beschreibung = "WiSe 2025"
+
+  [[sem.course]]
+  code = "D.D1.b"  # Richtlinien und Anforderungen an medizinische Software
+  note = 0
+
+  [[sem.course]]
+  code = "A.A3.a"  # Taxonomie und Ontologie
+  note = 0
+
+  [[sem.course]]
+  code = "D.D9"  # Visuelle Datenanalyse in der Medizin
+  note = 0
+
+  [[sem.course]]
+  code = "A.A5.a"  # Image Processing and Analysis 
+  note = 0
+
+  [[sem.course]]
+  code = "D.D6.b"  # Simulationsmodelle
+  note = 0
+  kfk = true
+
+  [[sem.course]]
+  code = "D.D5.a"  # Machine Learning in der Medizin
+  note = 0
+
+  [[sem.course]]
+  code = "D.D5.b"  # Analyse medizinischer Lebensdauerdaten
+  note = 5
+
+  [[sem.course]]
+  code = "C.C3"  # Introduction to Neuroscience
+  note = 0
+
+  [[sem.course]]
+  code = "D.D3"  # Neuroinformatik
+  note = 0
+
+  [[sem.course]]
+  code = "D.D12.a"  # Complex Systems I
+  note = 5
+
+  [[sem.course]]
+  code = "D.D4.a"  # Epidemiologie
+  note = 0
+
+  [[sem.course]]
+  code = "DS.I"  # Diplomandenseminar I.
+  note = 0
+
+  [[sem.course]]
+  code = "C.C4.a"  # Einführung in die Molekulare Biologie – Teil 1
+  note = 0
+  kfk = true
+
+  [[sem.course]]
+  code = "C.C1.a"  # Anatomie
+  note = 0
+
+  [[sem.course]]
+  code = "A.A2.b"  # Gesundheitstelematik
+  note = 0
+  
+
+
+[[sem]]
+id = "III"
+beschreibung = "SoSe 2026"
+
+
+
+[[sem]]
+id = "IV"
+beschreibung = "WiSe 2026"
+
+  [[sem.course]]
+  code = "B.B1.b"  # KfK seminar
+  note = 0
+
+  [[sem.course]]
+  code = "C.C4.b"  # Einführung in die Molekulare Biologie – Teil 2
+  note = 0
+  kfk = true
+
+  [[sem.course]]
+  code = "D.D12.b"  # Complex Systems II
+  note = 5
+
+  [[sem.course]]
+  code = "DS.II"  # Diplomandenseminar II.
+  note = 0
+
+  [[sem.course]]
+  code = "MA.schriftlich"
+  note = 0
+
+  [[sem.course]]
+  code = "MA.defensio"
+  note = 0
+
+  [[sem.course]]
+  code = "D.D1.a"  # Advanced Software Engineering
+  note = 0
+
+  [[sem.course]]
+  code = "A.A4.a"  # Biosignal
+  note = 0
+  versuch = 2
+
+  [[sem.course]]
+  code = "A.A1.a"  # Mod Klin IS
+  note = 0
+  versuch = 2
+
+  [[sem.course]]
+  code = "C.C1.b"  # Physiologie & Pathologie
+  note = 0
+
+
+
+
+# ========================================================================
+
+# - name
+# - type (se, vo, vu, etc.)
+# - ects
+# - kfk (true, false <- default)
+# - group (A, B, C, D, F) 
+
+
+[M]
+name = "Mitbelegung an anderen Unis"
+cp = 6
+  
+  [M.GME]
+  name = "Gehin Muster Erkennung"
+  type = "SE"
+  ects = 6
+  group = "F"
+
+  [M.AML]
+  name = "Advanced Machine Learning"
+  type = "VO"
+  ects = 6
+  group = "D"
+
+
+# =========================================================================
+  
+[DS]
+name = "Dipl. Semin."
+ects_required = 6
+
+  [DS.I]
+  name = "Dipl. Semin. I."
+  type = "SE"
+  ects = 3
+
+  [DS.II]
+  name = "Dipl. Semin. II."
+  type = "SE"
+  ects = 3
+
+
+[MA]
+name = "Masterarbeit"
+ects_required = 30
+
+  [MA.schriftlich]
+  name = "Masterarbeit"
+  ects = 27
+
+  [MA.defensio]
+  name = "Defensio"
+  ects = 3
+
+
+# ========================
+
+[A]
+name = "Grundlagen"
+ects_required = 24  # 18 (+6 auflage)
+note = "Drei Module aus A1–A5 sind zu wählen, sofern sie nicht bereits im Bachelor absolviert wurden"
+
+  [A.A1]
+  name = "Medizinische Informationssysteme"
+  ects = 6
+
+    [A.A1.a]
+    name = "Modellierung klinischer Informationssysteme"
+    type = "VU"
+    ects = 3
+
+    [A.A1.b]
+    name = "Informationssysteme des Gesundheitswesens"
+    type = "VU"
+    ects = 3
+
+  [A.A2]
+  name = "Medizinische Dokumentation"
+  ects = 6
+
+    [A.A2.a]
+    name = "Grundlagen der medizinischen Dokumentation"
+    type = "VU"
+    ects = 3
+
+    [A.A2.b]
+    name = "Gesundheitstelematik"
+    type = "VU"
+    ects = 3
+
+  [A.A3]
+  name = "Computerunterstützte Diagnose & Therapie"
+  ects = 6
+
+    [A.A3.a]
+    name = "Taxonomie und Ontologie"
+    type = "VU"
+    ects = 3
+
+    [A.A3.b]
+    name = "Medizinische Entscheidungsunterstützung"
+    type = "VU"
+    ects = 3
+
+  [A.A4]
+  name = "Biosignale und Medizinische Bildgebung"
+  ects = 6
+
+    [A.A4.a]
+    name = "Biosignalverarbeitung"
+    type = "VU"
+    ects = 3
+
+    [A.A4.b]
+    name = "Bildgebende Verfahren in der Medizin"
+    type = "VO"
+    ects = 3
+
+  [A.A5]
+  name = "Medizinische Bildverarbeitung und Bildanalyse"
+  ects = 6
+
+    [A.A5.a]
+    name = "Image Processing and Analysis"
+    type = "VU"
+    ects = 6
+
+# ========================================================================
+
+[B]
+name = "Kernfachkombination – Pflichtmodul"
+ects_required = 24  # 9
+
+  [B.B1]
+  name = "Vertiefung für die Kernfachkombination"
+  ects = 9
+
+    [B.B1.a]
+    name = "KfK-Praktikum"
+    type = "PR"
+    ects = 6
+
+    [B.B1.b]
+    name = "KfK-Seminar"
+    type = "SE"
+    ects = 3
+
+# ========================================================================
+    
+[C]
+name = "Anwendungsfach"
+ects_required = 12
+
+  [C.C1]
+  name = "Anatomie, Physiologie, Pathologie"
+  ects = 6
+
+    [C.C1.a]
+    name = "Anatomie"
+    type = "VU"
+    ects = 2
+
+    [C.C1.b]
+    name = "Physiologie & Pathologie"
+    type = "VU"
+    ects = 4
+
+  [C.C2]
+  name = "Public Health Policy and Healthcare Management"
+  ects = 3
+
+    [C.C2.a]
+    name = "Public Health Policy"
+    type = "VO"
+    ects = 3
+
+  [C.C3]
+  name = "Introduction to Neuroscience"
+  ects = 6
+
+  [C.C4]
+  name = "Einführung in die Molekulare Biologie"
+  ects = 6
+
+    [C.C4.a]
+    name = "Einführung in die Molekulare Biologie – Teil 1"
+    type = "VO"
+    ects = 3
+
+    [C.C4.b]
+    name = "Einführung in die Molekulare Biologie – Teil 2"
+    type = "VO"
+    ects = 3
+
+  [C.C5]
+  name = "Methoden der Medizin"
+  ects = 3
+
+    [C.C5.a]
+    name = "Methoden der Medizin"
+    type = "VO"
+    ects = 3
+
+  [C.C6]
+  name = "Medizinische Forschung"
+  ects = 6
+
+    [C.C6.a]
+    name = "Planung und Durchführung Klinischer Studien"
+    type = "VU"
+    ects = 3
+
+    [C.C6.b]
+    name = "Medizinische Ethik"
+    type = "VU"
+    ects = 3
+
+# ========================================================================
+
+
+[D]
+name = "Interdisziplinäre Informatik"
+ects_required = 24
+
+  [D.D1]
+  name = "Medizinische Softwareentwicklung"
+  ects = 9
+
+    [D.D1.a]
+    name = "Advanced Software Engineering"
+    type = "VU"
+    ects = 6
+
+    [D.D1.b]
+    name = "Richtlinien und Anforderungen an medizinische Software"
+    type = "VU"
+    ects = 3
+
+  [D.D2]
+  name = "Bioinformatik"
+  type = "VU"
+  ects = 6
+
+  [D.D3]
+  name = "Neuroinformatik"
+  type = "VU"
+  ects = 6
+
+  [D.D4]
+  name = "Methodische Grundlagen der Public Health Informatics"
+  ects = 6
+
+    [D.D4.a]
+    name = "Epidemiologie"
+    type = "VU"
+    ects = 3
+
+    [D.D4.b]
+    name = "Outcomes Research"
+    type = "VU"
+    ects = 3
+
+  [D.D5]
+  name = "Health Data Science"
+  ects = 6
+
+    [D.D5.a]
+    name = "Machine Learning in der Medizin"
+    type = "VU"
+    ects = 3
+
+    [D.D5.b]
+    name = "Analyse medizinischer Lebensdauerdaten"
+    type = "VU"
+    ects = 3
+
+  [D.D6]
+  name = "Systems Medicine und Simulation"
+  ects = 6
+
+    [D.D6.a]
+    name = "Systemanalyse"
+    type = "VU"
+    ects = 3
+
+    [D.D6.b]
+    name = "Simulationsmodelle"
+    type = "VU"
+    ects = 3
+
+  [D.D8]
+  name = "Prothetik und Steuerung"
+  ects = 6
+
+    [D.D8.a]
+    name = "Steuerung und Regelung in der Medizin"
+    type = "VU"
+    ects = 3
+
+    [D.D8.b]
+    name = "Prothetik"
+    type = "VU"
+    ects = 3
+
+  [D.D9]
+  name = "Visuelle Datenanalyse in der Medizin"
+  type = "VU"
+  ects = 6
+
+  [D.D10]
+  name = "Medizinische Sprachverarbeitung & Text Mining"
+  type = "VU"
+  ects = 3
+
+  [D.D11]
+  name = "Mobile Health & Wearable Computing"
+  type = "VU"
+  ects = 3
+
+  [D.D12]
+  name = "Komplexe Systeme"
+  ects = 8
+
+    [D.D12.a]
+    name = "Complex Systems I – Foundations, concepts and phenomena"
+    type = "VU"
+    ects = 4
+
+    [D.D12.b]
+    name = "Complex Systems II – Applications"
+    type = "VU"
+    ects = 4
+
+  [D.D13]
+  name = "Aktuelle Themen der Medizinischen Informatik"
+  type = "VU"
+  ects = 3
