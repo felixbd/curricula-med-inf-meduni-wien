@@ -6,7 +6,8 @@
   "a4",
   width: auto,
   height: auto,
-  flipped: true
+  flipped: true,
+  margin: 1.5cm
 )
 
 #set text(lang: "de", region: "at")
@@ -23,6 +24,7 @@
 
 #let done(x, ..args) = my-box(color: green, ..args)[#x]
 #let todo(x, ..args) = my-box(color: gray, ..args)[#x]
+#let todo-light(x, ..args) = my-box(color: gray.lighten(50%), ..args)[#x]
 #let fail(x, ..args) = my-box(color: red, ..args)[#x]
 #let in_progress(x, ..args) = my-box(color: orange, ..args)[#x]
 
@@ -71,6 +73,76 @@
 
   temp
 }
+
+#let gg(x) = if x == () {
+  (" ", todo)
+} else if x.last() >= 5 {
+  ("f", fail)
+} else if x.last() < 5 and x.last() > 0 {
+  ("x", done)
+} else if x.last() == 0 {
+  (" ", in_progress)
+} else {
+  (" ", todo)
+}
+
+
+#let ggg(k) = {
+  let lecture = get-lecture-from-key(k)
+    .values()
+    .rev()
+    .map(i => str(i))
+    .join(" | ")
+  
+  let temp = range(4)
+    .map(i => data.sem.at(i).at("course", default: ()))
+    .flatten()
+    .filter(i => k == i.code)
+
+  let versuch = if temp == () {
+    0
+  } else {
+    temp.last().at("versuch", default: 0)
+  }
+  
+  let grades = temp.map(e => e.note)
+
+  (gg(grades).last())(stroke: black, width: 99%)[  
+    - [#gg(grades).first()] *#k* | #lecture \ versuch: #versuch ~ ~ note: #grades
+  ]
+}
+
+#let get-grade-cp-name-from-lecture-key(k) = [#h(.25mm)] + todo(
+  width: 50%,
+  stroke: black,
+)[ 
+  #let block = k.split(".").first()
+  #let lv = k.split(".").at(1)
+  
+  *#k* ~ #(
+    x => {
+      [#x.ects ECTS: ~ *#x.name*]
+    }
+  )(get-lecture-from-key(k))
+
+  #let vls = if k.split(".").len() == 3 {
+    (k.split(".").last(), )
+  } else {
+    data.at(block).at(lv).keys().filter(i => not i in ("name", "ects", "type", "versuch"))
+  }
+
+  #if vls == () {
+    ggg(k)
+  } else {
+    stack(
+      dir: ttb,
+      for e in vls.map(x => ( (block, lv, x).join("."), x)) {
+        ggg(e.first())
+      }
+    )
+  }
+]
+
 
 
 #let get-sem-results(x) = {
@@ -193,8 +265,6 @@
   digits: 3
 )
 
-
-#v(-20mm)
   
 #align(center)[
   #text(size: 15pt)[*KfK Bioinformatik* ]
@@ -211,15 +281,264 @@
 |  #text(weight: "bold")[#current-proc%] | < | < | < | < | < | < | < | < |
     ]
   ]
+
 ]
 
+*Vorlesungsverzeichnis*:
+- *Uni Wien*: https://ufind.univie.ac.at/de/vvz_sub.html?path=325868
+- *MedUni Wien*: https://campus.meduniwien.ac.at/med.campus/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses
+- *TU Wien*: todo ...
 
-#v(-20mm)
+~
+
+- https://vowi.fsinf.at/wiki/VorlesungsWiki
+- https://vowi.fsinf.at/wiki/Curriculum:E066936
+- https://vowi.fsinf.at/wiki/Curriculum:N066936
+
 
 
 #set page(
   "a4",
   width: auto,
-  flipped: true
+  height: 25cm,
+  flipped: true,
+  margin: 1.5cm,
 )
 
+
+= Pflicht- und Wahlmodule mit Lehrveranstaltungen
+
+#shadowed[
+Dieser Block wird erweitert durch eine Liste von Lehrveranstaltungen der Technischen Universität Wien,
+die gleichwertig zu den oben gelisteten Modulen gewählt werden können. Dafür ist eine Mitbelegung
+an der Technischen Universität notwendig. Die Liste wird jedes Studienjahr spätestens ein Monat vor
+Beginn des Wintersemesters von der Curriculumdirektion öffentlich gemacht.
+]
+
+== A. Grundlagen 18 ECTS
+
+#shadowed[
+  #text(size: 13pt, weight: "bold", font: "Fira Code")[
+    #important-box([
+      +6cp extra aus block A als auflage \
+      => 18 + 6 = 24 ects total
+    ])
+]
+]
+
+/*
+#shadowed[
+  #text(weight: "bold", size: 20pt, fill: red)[
+    Note: +6cp extra aus block A als auflage
+  ]
+]
+*/
+
+
+Aus den folgenden Modulen sind drei Module zu wählen, die nicht bereits im Rahmen des
+Bachelorstudiums der Informatik (Ausprägungsfach Medizininformatik) absolviert wurden. Im Zuge der
+Gleichwertigkeitsprüfung nach §3 können bis zu zwei Module dieses Blocks vorgeschrieben werden.
+Als Teil des Masterstudiums sind demnach die restlichen drei zu wählen
+
+
+#stack(
+  dir: ttb, spacing: 2mm,
+  stack(
+    dir: ltr, spacing: 2mm,
+    get-grade-cp-name-from-lecture-key("A.A1"),
+    get-grade-cp-name-from-lecture-key("A.A2"),
+  ),
+  stack(
+    dir: ltr, spacing: 2mm,
+    get-grade-cp-name-from-lecture-key("A.A3"),
+    get-grade-cp-name-from-lecture-key("A.A4"),
+  ),
+  get-grade-cp-name-from-lecture-key("A.A5"),
+)
+
+
+#pagebreak()
+
+== *B.* Kernfachkombination 24 ECTS
+
+Eine *Kernfachkombination* (KfK) stellt im Hinblick auf eine Spezialisierung eine thematisch
+abgestimmte *Kombination von Modulen* oder Lehrveranstaltungen *aus* den beiden Töpfen
+*Anwendungsfächer* (die eine entsprechende Wissensgrundlage aus Medizin und Lebenswissenschaften
+bieten; siehe *Abschnitt C*) und *Interdisziplinäre Informatik* (die die entsprechenden informatischen
+Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt durch* ein *Pflichtmodul
+(Modul B1)* zur *Vertiefung in das Gebiet der Spezialisierung*. #text(fill: red)[*Es ist eine der fünf KfKs zu wählen.*]
+
+=== Pflichtmodul Modul
+
+#get-grade-cp-name-from-lecture-key("B.B1")
+
+=== KfK fächer
+
+#stack(
+  dir: ltr, spacing: 5mm,
+  stack(
+    dir: ttb, spacing: 5mm,
+    todo-light(stroke: black)[
+      #text(fill: green.darken(40%), size: 15pt)[
+        *KfK Bioinformatik:*
+      ]
+      
+      #get-grade-cp-name-from-lecture-key("C.C4")
+      #get-grade-cp-name-from-lecture-key("D.D2")
+      #rect(stroke: 1mm)[
+        #get-grade-cp-name-from-lecture-key("D.D5.a")
+        #align(center)[*oder*]
+        #get-grade-cp-name-from-lecture-key("D.D6.a")
+      ]
+    ],
+    todo-light(stroke: black)[
+      *KfK Neuroinformatik:*
+
+      #get-grade-cp-name-from-lecture-key("C.C3")
+      #get-grade-cp-name-from-lecture-key("D.D3")
+      #rect(stroke: 1mm)[
+        #get-grade-cp-name-from-lecture-key("D.D5.a")
+        #align(center)[*oder*]
+        #get-grade-cp-name-from-lecture-key("D.D6.b")
+      ]
+    ],
+    todo-light(stroke: black)[
+      *KfK Public Health Informatics:*
+
+      #get-grade-cp-name-from-lecture-key("C.C2")
+      #get-grade-cp-name-from-lecture-key("D.D4")
+      #rect(stroke: 1mm)[
+        #get-grade-cp-name-from-lecture-key("D.D12.b")
+        #align(center)[*oder*]
+        #get-grade-cp-name-from-lecture-key("D.D5.b")
+      ]
+    ],
+  ),
+  stack(
+    dir: ttb, spacing: 5mm,
+    
+    todo-light(stroke: black)[
+      *KfK Informatics for Assistive Technology:*
+
+      #get-grade-cp-name-from-lecture-key("C.C6")
+      #get-grade-cp-name-from-lecture-key("D.D8")
+      #get-grade-cp-name-from-lecture-key("D.D11")
+    ],
+    todo-light(stroke: black)[
+      *KfK Klinische Informatik:*
+  
+      #get-grade-cp-name-from-lecture-key("C.C5")
+      #get-grade-cp-name-from-lecture-key("C.C6.b")
+      #rect(stroke: 1mm)[
+        #get-grade-cp-name-from-lecture-key("D.D5")
+        #align(center)[*oder*]
+        #get-grade-cp-name-from-lecture-key("D.D9")
+      ]
+      #get-grade-cp-name-from-lecture-key("D.D10")
+    ]
+  ),
+ 
+)
+
+
+#pagebreak()
+
+== *C.* Anwendungsfach 12 ECTS
+
+Dieser Block besteht aus einem *Pflichtmodul (Modul C1) und weiteren* Modulen, aus denen insgesamt *6
+ECTS* auf Modul- oder Lehrveranstaltungsebene zu wählen sind. *Ausgenommen* davon *sind* die Module
+oder Lehrveranstaltungen, *die der gewählten Kernfachkombination zugeordnet sind*.
+
+=== Pflichtmodul:
+
+#get-grade-cp-name-from-lecture-key("C.C1")
+
+
+=== Wahlmodule:
+
+#stack(
+  dir: ltr, spacing: 2mm,
+  stack(
+    dir: ttb, spacing: 5mm,
+      get-grade-cp-name-from-lecture-key("C.C2"),
+      get-grade-cp-name-from-lecture-key("C.C4"),
+  ),
+  stack(
+    dir: ttb, spacing: 5mm,
+    get-grade-cp-name-from-lecture-key("C.C3"),
+    get-grade-cp-name-from-lecture-key("C.C5"),
+    get-grade-cp-name-from-lecture-key("C.C6"),
+  ),
+ 
+)
+
+
+#pagebreak()
+
+
+
+== *D.* Interdisziplinäre Informatik 24 ECTS
+
+Dieser Block besteht aus einem *Pflichtmodul (Modul D1) und weiteren* Modulen, aus denen insgesamt
+*15 ECTS* auf Modul- oder Lehrveranstaltungsebene zu wählen sind. *Ausgenommen* davon *sind die*
+Module oder Lehrveranstaltungen, *die der gewählten Kernfachkombination zugeordnet sind*.
+
+=== Pflichtmodul:
+
+#get-grade-cp-name-from-lecture-key("D.D1")
+
+
+=== Wahlmodule:
+
+#stack(
+  dir: ltr, spacing: 2mm,
+  stack(
+    dir: ttb, spacing: 5mm,
+    get-grade-cp-name-from-lecture-key("D.D2"),
+    get-grade-cp-name-from-lecture-key("D.D3"),
+    get-grade-cp-name-from-lecture-key("D.D4"),
+    get-grade-cp-name-from-lecture-key("D.D5"),
+    get-grade-cp-name-from-lecture-key("D.D6"),
+  ),
+  stack(
+    dir: ttb, spacing: 5mm,
+    get-grade-cp-name-from-lecture-key("D.D8"),
+    get-grade-cp-name-from-lecture-key("D.D9"),
+    get-grade-cp-name-from-lecture-key("D.D10"),
+    get-grade-cp-name-from-lecture-key("D.D11"),
+    get-grade-cp-name-from-lecture-key("D.D12"),
+  ),
+  
+)
+
+
+#pagebreak()
+
+
+== Freifächer 6 ECTS
+
+Im Rahmen des Masterstudiums Medizinische Informatik sind Lehrveranstaltungen nach freier Wahl im
+Umfang von 6 ECTS-Punkten zu absolvieren.
+
+== Diplomand:innenseminare 6 ECTS
+
+Im Rahmen des Masterstudiums Medizinische Informatik sind zwei Diplomand:innenseminare (je eines
+im 3. und 4. Sem.) im Umfang von insgesamt 6 ECTS-Punkten zu absolvieren. Das erste Seminar dient
+zur wissenschaftlichen Aufbereitung und Ausarbeitung eines speziellen Themas, mit dem Ziel, aus den
+entsprechenden Erkenntnissen heraus das wissenschaftliche Thema der Masterarbeit zu entwickeln.
+Das zweite Seminar dient zur wissenschaftlichen Vertiefung und Aufbereitung ausgewählter Fragen im
+Kontext der Masterarbeit, mit dem Ziel, bei entsprechend hochwertigem Ergebnis diese Arbeiten zur
+Präsentation im Rahmen einer wissenschaftlichen Konferenz aufzubereiten und einzureichen.
+
+== Masterarbeit (4. Sem.) 30 ECTS
+
+Auf die Masterarbeit sind die Bestimmungen der §§ 17a ff des II. Abschnitts der Satzung der
+Medizinischen Universität Wien sinngemäß anzuwenden.
+Die schriftliche Masterarbeit dient dem Nachweis der Befähigung, wissenschaftliche Themen
+selbständig sowie inhaltlich und methodisch vertretbar zu bearbeiten. Die Aufgabenstellung der
+schriftlichen Masterarbeit ist so zu wählen, dass für die Studierende oder den Studierenden die
+Bearbeitung innerhalb von sechs Monaten möglich und zumutbar ist.
+Das Thema der schriftlichen Masterarbeit ist aus einer der Kernfachkombinationen bzw. einem Modul
+der Interdisziplinären Informatik zu entnehmen. Soll ein anderer Gegenstand gewählt werden oder
+bestehen bezüglich der Zuordnung des gewählten Themas Unklarheiten, liegt die Entscheidung über
+die Zulässigkeit beim zuständigen Organ.
