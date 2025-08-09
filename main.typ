@@ -13,8 +13,7 @@
 #set text(lang: "de", region: "at")
 
 
-#let include-in-progress = true
-
+// ============================================================================
 
 #let my-box(x, color: gray, ..args) = box(
   fill: color.transparentize(50%),
@@ -30,6 +29,8 @@
 
 
 #let data = toml("main.toml")
+
+#let include-in-progress = data.at("include_in_progress", default: false)
 
 #let get-lecture-from-key(key) = {
   key.split(".").fold(none, (acc, key) => {
@@ -264,6 +265,8 @@
   ),
   digits: 3
 )
+
+// ============================================================================
 
   
 #align(center)[

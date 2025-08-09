@@ -1,4 +1,7 @@
 
+include_in_progress = true
+
+
 [[sem]]
 id = "I"
 beschreibung = "SoSe 2025"
