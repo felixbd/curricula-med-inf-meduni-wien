@@ -266,6 +266,36 @@
   digits: 3
 )
 
+#let ncs = {
+  range(4)
+  .map(i =>
+    data
+      .sem
+      .at(i)
+      .at("course", default: ())
+      .map(e => e.note)
+      .filter(e => e < 5 and e > 0)
+  ).map(e =>  if e.len() == 0 {
+      0
+    } else {
+      calc.round(
+        e.sum(default: 0) / e.len(),
+        digits: 4
+      )
+    }
+  )
+}
+
+#let sem-ncs = {
+  ([`I.`], [`II.`], [`III.`], [`IV.`])
+    .zip(ncs)
+    .map(x => x.first() + ": " + str(x.last()))
+    .join([ #h(1mm) | #h(1mm) ])
+}  
+
+#let total-nc = (e =>  if e.len() == 0 { 0 } else { e.sum(default: 0) / e.len() } )( ncs.filter(e => e < 5 and e > 0) )
+
+
 // ============================================================================
 
   
@@ -281,7 +311,7 @@
 | *`III`* | #xy("A", 2) | #xy("B", 2) | #xy("C", 2) | #xy("D", 2) | #xy("F", 2) | #xy("DS", 2) | #xy("MA", 2) |  #get-sem-results(2).cp cp |
 | *`IV`*  | #xy("A", 3) | #xy("B", 3) | #xy("C", 3) | #xy("D", 3) | #xy("F", 3) | #xy("DS", 3) | #xy("MA", 3) |  #get-sem-results(3).cp cp |
 | $sum$   | #block-cp("A") | #block-cp("B") | #block-cp("C") | #block-cp("D") | #block-cp("F") | #block-cp("DS") | #block-cp("MA")  | #current / 120 #p6 |
-|  #text(weight: "bold")[#current-proc%] | < | < | < | < | < | < | < | < |
+| #stack(dir: ltr, spacing: 1fr, [nc's: #h(1mm) #sem-ncs], text(weight: "bold")[#current-proc%], [nc: ~ #total-nc] )  | < | < | < | < | < | < | < | < |
     ]
   ]
 
