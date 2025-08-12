@@ -32,6 +32,35 @@
 
 #let include-in-progress = data.at("include_in_progress", default: false)
 
+#let include-failed = data.at("include_failed", default: false)
+
+#let data = {
+  if include-failed {
+    data
+  } else {
+    let temp = data.remove("sem")
+
+    let abc = range(temp.len())
+      .map(i => {
+        let fuu = temp.at(i)
+        
+        fuu.insert(
+          "course",
+          temp
+            .at(i)
+            .at("course", default: ())
+            .filter(e => e.note < 5)
+        )
+
+        fuu        
+        }
+      )
+    
+    data.insert("sem", abc)
+    data
+  }
+}
+
 #let get-lecture-from-key(key) = {
   key.split(".").fold(none, (acc, key) => {
     if acc == none {
@@ -187,7 +216,7 @@
     
     "nc": calc.round(
       eval(
-        str(current-sem.course.map(e => { e.note }).sum())
+        str(current-sem.course.map(e => { e.note }).sum(default: 0))
         + " / "
         + str(current-sem.len())
       ),
