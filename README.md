@@ -1,6 +1,8 @@
 # curricula-med-inf-meduni-wien
 
-### see: [pdf](./med-inf.pdf)
+### see: [pdf](./main.pdf)
+
+![thumbnail](./thumbnail.png)
 
 
 > [!NOTE]

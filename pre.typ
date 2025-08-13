@@ -1,7 +1,7 @@
 #import "@preview/cheq:0.2.2": checklist
 #import "@preview/tablem:0.2.0": tablem, three-line-table
 #import "@preview/shadowed:0.2.0": shadowed as shadowed-original
-
+#import "@preview/theorion:0.3.3": cosmos, caution-box, warning-box, remark, important-box
 
 #let shadowed(dark-mode: false, ..args) = shadowed-original(
   radius: 4pt,
