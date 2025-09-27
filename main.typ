@@ -347,7 +347,7 @@
 ]
 
 *Vorlesungsverzeichnis*:
-- *Uni Wien*: https://ufind.univie.ac.at/de/vvz_sub.html?path=325868
+- *Uni Wien*: https://ufind.univie.ac.at/de/vvz_sub.html?semester=2025W&path=325825
 - *MedUni Wien*: https://campus.meduniwien.ac.at/med.campus/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses
 - *TU Wien*: todo ...
 
