@@ -347,9 +347,9 @@
 ]
 
 *Vorlesungsverzeichnis*:
+- *MedUni Wien*: https://campus.meduniwien.ac.at/med.campus/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses?$filter=&$skip=0&curriculumVersionId=496&objTermId=148&orgId=1
+- *TU Wien*: https://tiss.tuwien.ac.at/curriculum/public/curriculum.xhtml?dswid=7947&dsrid=141&key=56089
 - *Uni Wien*: https://ufind.univie.ac.at/de/vvz_sub.html?semester=2025W&path=325825
-- *MedUni Wien*: https://campus.meduniwien.ac.at/med.campus/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses
-- *TU Wien*: todo ...
 
 ~
 
