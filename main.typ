@@ -1,6 +1,35 @@
-#import "pre.typ": *
+#import "@preview/cheq:0.2.2": checklist
+#import "@preview/tablem:0.2.0": tablem, three-line-table
+#import "@preview/shadowed:0.2.0": shadowed as shadowed-original
+#import "@preview/theorion:0.3.3": cosmos, caution-box, warning-box, remark, important-box
+#import cosmos.fancy: *
 
-#show: my-config
+
+#let shadowed(dark-mode: false, ..args) = shadowed-original(
+  radius: 4pt,
+  inset: 12pt,    
+  fill: if dark-mode { gray.darken(90%) } else { white },
+  ..args
+)
+
+#set text(font: (
+  "Fira Sans",
+  "Atkinson Hyperlegible Next",
+  "Atkinson Hyperlegible",
+  "Libertinus Serif")
+)
+
+#set par(justify: true)
+  
+#show: checklist.with(
+  marker-map: (
+    " ": sym.ballot,
+    "x": sym.ballot.cross,
+    "-": sym.bar.h,
+    "/": sym.slash.double
+  )
+)
+ 
 
 #set page(
   "a4",
@@ -12,12 +41,10 @@
 
 #set text(lang: "de", region: "at")
 
-
-// ============================================================================
-
 #let my-box(x, color: gray, ..args) = box(
   fill: color.transparentize(50%),
   inset: 5pt,
+  radius: 2mm,
   ..args
 )[#x]
 
@@ -60,6 +87,7 @@
     data
   }
 }
+
 
 #let get-lecture-from-key(key) = {
   key.split(".").fold(none, (acc, key) => {
@@ -282,7 +310,7 @@
   [#current / #goal]
 }
 
-#let total = 120
+#let total = 126  // 120 + 6cp auflage
 #let current = range(4).map(i => get-sem-results(i).cp).sum()
 
 #let current-proc = calc.round(
@@ -294,6 +322,7 @@
   ),
   digits: 3
 )
+
 
 #let ncs = {
   range(4)
@@ -322,15 +351,17 @@
     .join([ #h(1mm) | #h(1mm) ])
 }  
 
-#let total-nc = (e =>  if e.len() == 0 { 0 } else { e.sum(default: 0) / e.len() } )( ncs.filter(e => e < 5 and e > 0) )
+#let total-nc = calc.round(
+  (e =>  if e.len() == 0 { 0 } else { e.sum(default: 0) / e.len() } )(
+    ncs.filter(e => e < 5 and e > 0)
+  ), digits: 4)
 
 
-// ============================================================================
+#datetime.today().display("[day] [month repr:short] [year]")
 
-  
 #align(center)[
-  #text(size: 15pt)[*KfK Bioinformatik* ]
-  #shadowed[  
+  #text(size: 15pt)[*KfK Bioinformatik*]
+  #shadowed(radius: .4cm)[  
     #tablem(ignore-second-row: false)[
 | #align(center)[*Medizinische Informatik \ C U R R I C U L A ~ ~ ~ 30. Mitteilungsblatt ~ ~ ~ Nr. 33*] | < | < | < | < | < | < | < | < |
 | sem. | *Pflicht- und Wahlmodulen* | < | < | < | #g[*Freifächer* \ (6 ECTS)] | #g[*Diplomanden- \ seminare* \ (6 ECTS)] | ~ *Masterarbeit* ~  | ECTS \ $ sum $ |
@@ -345,18 +376,6 @@
   ]
 
 ]
-
-*Vorlesungsverzeichnis*:
-- *MedUni Wien*: https://campus.meduniwien.ac.at/med.campus/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses?$filter=&$skip=0&curriculumVersionId=496&objTermId=148&orgId=1
-- *TU Wien*: https://tiss.tuwien.ac.at/curriculum/public/curriculum.xhtml?dswid=7947&dsrid=141&key=56089
-- *Uni Wien*: https://ufind.univie.ac.at/de/vvz_sub.html?semester=2025W&path=325825
-
-~
-
-- https://vowi.fsinf.at/wiki/VorlesungsWiki
-- https://vowi.fsinf.at/wiki/Curriculum:E066936
-- https://vowi.fsinf.at/wiki/Curriculum:N066936
-
 
 
 #set page(
@@ -387,15 +406,6 @@ Beginn des Wintersemesters von der Curriculumdirektion öffentlich gemacht.
     ])
 ]
 ]
-
-/*
-#shadowed[
-  #text(weight: "bold", size: 20pt, fill: red)[
-    Note: +6cp extra aus block A als auflage
-  ]
-]
-*/
-
 
 Aus den folgenden Modulen sind drei Module zu wählen, die nicht bereits im Rahmen des
 Bachelorstudiums der Informatik (Ausprägungsfach Medizininformatik) absolviert wurden. Im Zuge der
@@ -440,10 +450,15 @@ Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt 
   dir: ltr, spacing: 5mm,
   stack(
     dir: ttb, spacing: 5mm,
-    todo-light(stroke: black)[
-      #text(fill: green.darken(40%), size: 15pt)[
+    // todo-light
+    // done(stroke: black)[
+    
+    my-box(color: green.darken(45%), stroke: black)[
+    // in_progress(stroke: black)[
+      
+      //#text(fill: green.darken(40%), size: 15pt)[
         *KfK Bioinformatik:*
-      ]
+      //]
       
       #get-grade-cp-name-from-lecture-key("C.C4")
       #get-grade-cp-name-from-lecture-key("D.D2")
