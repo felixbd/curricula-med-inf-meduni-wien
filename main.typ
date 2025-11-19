@@ -391,7 +391,7 @@
 | *`III`* | #get-table-cell-content("A", 2) | #get-table-cell-content("B", 2) | #get-table-cell-content("C", 2) | #get-table-cell-content("D", 2) | #get-table-cell-content("F", 2) | #get-table-cell-content("DS", 2) | #get-table-cell-content("MA", 2) |  #get-sem-results(2).cp cp |
 | *`IV`*  | #get-table-cell-content("A", 3) | #get-table-cell-content("B", 3) | #get-table-cell-content("C", 3) | #get-table-cell-content("D", 3) | #get-table-cell-content("F", 3) | #get-table-cell-content("DS", 3) | #get-table-cell-content("MA", 3) |  #get-sem-results(3).cp cp |
 | $sum$   | #block-cp("A")  \ #text(fill: red)[*+6 ECTS*] | #block-cp("B") | #block-cp("C") | #block-cp("D") | #block-cp("F") | #block-cp("DS") | #block-cp("MA")  | #current / 120 #p6 |
-| #stack(dir: ltr, spacing: 1fr, [nc's: #h(1mm) #sem-ncs], text(weight: "bold")[#current-proc%], text(weight: "bold")[#current-passed-proc% (passed)], [nc: ~ #total-nc] )  | < | < | < | < | < | < | < | < |
+| #stack(dir: ltr, spacing: 1fr, [nc's: #h(1mm) #sem-ncs], text(weight: "bold")[scheduled: #current-proc%], text(weight: "bold")[passed: #current-passed-proc%], [nc: ~ #total-nc] )  | < | < | < | < | < | < | < | < |
     ]
   ]
 
