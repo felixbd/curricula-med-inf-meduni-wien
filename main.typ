@@ -132,7 +132,7 @@
   temp
 }
 
-#let gg(x) = if x == () {
+#let get-grade-status(x) = if x == () {
   (" ", todo)
 } else if x.last() >= 5 {
   ("f", fail)
@@ -145,7 +145,7 @@
 }
 
 
-#let ggg(k) = {
+#let format-lecture-grade-info(k) = {
   let lecture = get-lecture-from-key(k)
     .values()
     .rev()
@@ -165,8 +165,8 @@
   
   let grades = temp.map(e => e.note)
 
-  (gg(grades).last())(stroke: black, width: 99%)[  
-    - [#gg(grades).first()] *#k* | #lecture \ versuch: #versuch ~ ~ note: #grades
+  (get-grade-status(grades).last())(stroke: black, width: 99%)[  
+    - [#get-grade-status(grades).first()] *#k* | #lecture \ versuch: #versuch ~ ~ note: #grades
   ]
 }
 
@@ -190,12 +190,12 @@
   }
 
   #if vls == () {
-    ggg(k)
+    format-lecture-grade-info(k)
   } else {
     stack(
       dir: ttb,
       for e in vls.map(x => ( (block, lv, x).join("."), x)) {
-        ggg(e.first())
+        format-lecture-grade-info(e.first())
       }
     )
   }
@@ -220,6 +220,7 @@
     "MA": ("-",),
     "nc": 0,
     "cp": 0,
+    "cp-passed": 0,
     ) 
   }
     
@@ -257,6 +258,14 @@
       .map(e => e.code)
       .map(e => get-lecture-from-key(e))
       .map(e => e.ects)
+      .sum(default: 0),
+    
+    "cp-passed":
+    current-sem.course
+      .filter(e => e.note < 5 and e.note > 0)
+      .map(e => e.code)
+      .map(e => get-lecture-from-key(e))
+      .map(e => e.ects)
       .sum(default: 0)
   )
 }
@@ -287,7 +296,7 @@
 }
 
 // get the content of (x: current block, y: current semester) (for the table)
-#let xy(c, sem-nr) = {
+#let get-table-cell-content(c, sem-nr) = {
   get-sem-results(calc.clamp(sem-nr, 0, 3))
     .at(c)
     .map(e =>  if e.first() == "-" { "-" }
@@ -298,7 +307,7 @@
 }
 
 // macros for the table (shorter is better in the table)
-#let g(x) = align(horizon)[#x]
+#let align-horizon(x) = align(horizon)[#x]
 #let ma = stack(dir: ltr, spacing: 3mm, [A. \ schriftlich \ 27cp], [B. \ Defensio \ 3cp])
 #let p6 = text(weight: "bold", fill: red)[\ +6 auflage]
 
@@ -316,6 +325,18 @@
 #let current-proc = calc.round(
   eval(
     str(current)
+    + " / "
+    + str(total)
+    + " * 100"
+  ),
+  digits: 3
+)
+
+#let current-passed = range(4).map(i => get-sem-results(i).cp-passed).sum()
+
+#let current-passed-proc = calc.round(
+  eval(
+    str(current-passed)
     + " / "
     + str(total)
     + " * 100"
@@ -364,14 +385,14 @@
   #shadowed(radius: .4cm)[  
     #tablem(ignore-second-row: false)[
 | #align(center)[*Medizinische Informatik \ C U R R I C U L A ~ ~ ~ 30. Mitteilungsblatt ~ ~ ~ Nr. 33*] | < | < | < | < | < | < | < | < |
-| sem. | *Pflicht- und Wahlmodulen* | < | < | < | #g[*Freifächer* \ (6 ECTS)] | #g[*Diplomanden- \ seminare* \ (6 ECTS)] | ~ *Masterarbeit* ~  | ECTS \ $ sum $ |
+| sem. | *Pflicht- und Wahlmodulen* | < | < | < | #align-horizon[*Freifächer* \ (6 ECTS)] | #align-horizon[*Diplomanden- \ seminare* \ (6 ECTS)] | ~ *Masterarbeit* ~  | ECTS \ $ sum $ |
 | ^ | A.\ Grundlagen \ 18cp #p6 | B.\ KfK \ 24cp | C.\ Angewant \ 12cp | D.\ Interdiszi. Inf. \ 24cp | ^ | ^ | #ma | ^ |
-| *`I`*   | #xy("A", 0) | #xy("B", 0) | #xy("C", 0) | #xy("D", 0) | #xy("F", 0) | #xy("DS", 0) | #xy("MA", 0) |  #get-sem-results(0).cp cp |
-| *`II`*  | #xy("A", 1) | #xy("B", 1) | #xy("C", 1) | #xy("D", 1) | #xy("F", 1) | #xy("DS", 1) | #xy("MA", 1) |  #get-sem-results(1).cp cp |
-| *`III`* | #xy("A", 2) | #xy("B", 2) | #xy("C", 2) | #xy("D", 2) | #xy("F", 2) | #xy("DS", 2) | #xy("MA", 2) |  #get-sem-results(2).cp cp |
-| *`IV`*  | #xy("A", 3) | #xy("B", 3) | #xy("C", 3) | #xy("D", 3) | #xy("F", 3) | #xy("DS", 3) | #xy("MA", 3) |  #get-sem-results(3).cp cp |
+| *`I`*   | #get-table-cell-content("A", 0) | #get-table-cell-content("B", 0) | #get-table-cell-content("C", 0) | #get-table-cell-content("D", 0) | #get-table-cell-content("F", 0) | #get-table-cell-content("DS", 0) | #get-table-cell-content("MA", 0) |  #get-sem-results(0).cp cp |
+| *`II`*  | #get-table-cell-content("A", 1) | #get-table-cell-content("B", 1) | #get-table-cell-content("C", 1) | #get-table-cell-content("D", 1) | #get-table-cell-content("F", 1) | #get-table-cell-content("DS", 1) | #get-table-cell-content("MA", 1) |  #get-sem-results(1).cp cp |
+| *`III`* | #get-table-cell-content("A", 2) | #get-table-cell-content("B", 2) | #get-table-cell-content("C", 2) | #get-table-cell-content("D", 2) | #get-table-cell-content("F", 2) | #get-table-cell-content("DS", 2) | #get-table-cell-content("MA", 2) |  #get-sem-results(2).cp cp |
+| *`IV`*  | #get-table-cell-content("A", 3) | #get-table-cell-content("B", 3) | #get-table-cell-content("C", 3) | #get-table-cell-content("D", 3) | #get-table-cell-content("F", 3) | #get-table-cell-content("DS", 3) | #get-table-cell-content("MA", 3) |  #get-sem-results(3).cp cp |
 | $sum$   | #block-cp("A")  \ #text(fill: red)[*+6 ECTS*] | #block-cp("B") | #block-cp("C") | #block-cp("D") | #block-cp("F") | #block-cp("DS") | #block-cp("MA")  | #current / 120 #p6 |
-| #stack(dir: ltr, spacing: 1fr, [nc's: #h(1mm) #sem-ncs], text(weight: "bold")[#current-proc%], [nc: ~ #total-nc] )  | < | < | < | < | < | < | < | < |
+| #stack(dir: ltr, spacing: 1fr, [nc's: #h(1mm) #sem-ncs], text(weight: "bold")[#current-proc%], text(weight: "bold")[#current-passed-proc% (passed)], [nc: ~ #total-nc] )  | < | < | < | < | < | < | < | < |
     ]
   ]
 
