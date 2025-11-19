@@ -307,7 +307,6 @@
 }
 
 // macros for the table (shorter is better in the table)
-#let align-horizon(x) = align(horizon)[#x]
 #let ma = stack(dir: ltr, spacing: 3mm, [A. \ schriftlich \ 27cp], [B. \ Defensio \ 3cp])
 #let p6 = text(weight: "bold", fill: red)[\ +6 auflage]
 
@@ -385,7 +384,7 @@
   #shadowed(radius: .4cm)[  
     #tablem(ignore-second-row: false)[
 | #align(center)[*Medizinische Informatik \ C U R R I C U L A ~ ~ ~ 30. Mitteilungsblatt ~ ~ ~ Nr. 33*] | < | < | < | < | < | < | < | < |
-| sem. | *Pflicht- und Wahlmodulen* | < | < | < | #align-horizon[*Freifächer* \ (6 ECTS)] | #align-horizon[*Diplomanden- \ seminare* \ (6 ECTS)] | ~ *Masterarbeit* ~  | ECTS \ $ sum $ |
+| sem. | *Pflicht- und Wahlmodulen* | < | < | < | #align(horizon)[*Freifächer* \ (6 ECTS)] | #align(horizon)[*Diplomanden- \ seminare* \ (6 ECTS)] | ~ *Masterarbeit* ~  | ECTS \ $ sum $ |
 | ^ | A.\ Grundlagen \ 18cp #p6 | B.\ KfK \ 24cp | C.\ Angewant \ 12cp | D.\ Interdiszi. Inf. \ 24cp | ^ | ^ | #ma | ^ |
 | *`I`*   | #get-table-cell-content("A", 0) | #get-table-cell-content("B", 0) | #get-table-cell-content("C", 0) | #get-table-cell-content("D", 0) | #get-table-cell-content("F", 0) | #get-table-cell-content("DS", 0) | #get-table-cell-content("MA", 0) |  #get-sem-results(0).cp cp |
 | *`II`*  | #get-table-cell-content("A", 1) | #get-table-cell-content("B", 1) | #get-table-cell-content("C", 1) | #get-table-cell-content("D", 1) | #get-table-cell-content("F", 1) | #get-table-cell-content("DS", 1) | #get-table-cell-content("MA", 1) |  #get-sem-results(1).cp cp |
