@@ -462,7 +462,7 @@ Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt 
       
       #get-grade-cp-name-from-lecture-key("C.C4")
       #get-grade-cp-name-from-lecture-key("D.D2")
-      #rect(stroke: 1mm)[
+      #rect(stroke: 1mm, radius: 2mm)[
         #get-grade-cp-name-from-lecture-key("D.D5.a")
         #align(center)[*oder*]
         #get-grade-cp-name-from-lecture-key("D.D6.a")
@@ -473,7 +473,7 @@ Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt 
 
       #get-grade-cp-name-from-lecture-key("C.C3")
       #get-grade-cp-name-from-lecture-key("D.D3")
-      #rect(stroke: 1mm)[
+      #rect(stroke: 1mm, radius: 2mm)[
         #get-grade-cp-name-from-lecture-key("D.D5.a")
         #align(center)[*oder*]
         #get-grade-cp-name-from-lecture-key("D.D6.b")
@@ -484,7 +484,7 @@ Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt 
 
       #get-grade-cp-name-from-lecture-key("C.C2")
       #get-grade-cp-name-from-lecture-key("D.D4")
-      #rect(stroke: 1mm)[
+      #rect(stroke: 1mm, radius: 2mm)[
         #get-grade-cp-name-from-lecture-key("D.D12.b")
         #align(center)[*oder*]
         #get-grade-cp-name-from-lecture-key("D.D5.b")
@@ -506,7 +506,7 @@ Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt 
   
       #get-grade-cp-name-from-lecture-key("C.C5")
       #get-grade-cp-name-from-lecture-key("C.C6.b")
-      #rect(stroke: 1mm)[
+      #rect(stroke: 1mm, radius: 2mm)[
         #get-grade-cp-name-from-lecture-key("D.D5")
         #align(center)[*oder*]
         #get-grade-cp-name-from-lecture-key("D.D9")
