@@ -2,7 +2,11 @@
 
 ### see: [pdf](./main.pdf)
 
-~~`![thumbnail](./thumbnail.png)`~~
+<!-- ~~` -->
+
+![thumbnail](./thumbnail.png)
+
+<!-- `~~ -->
 
 
 > [!NOTE]
