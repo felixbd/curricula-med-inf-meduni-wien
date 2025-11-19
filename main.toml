@@ -236,7 +236,7 @@ ects = 3
 
 [A]
 name = "Grundlagen"
-ects_required = 24
+ects_required = 18 # (+6 auflage)
 note = "Drei Module aus A1–A5 sind zu wählen, sofern sie nicht bereits im Bachelor absolviert wurden"
 
 [A.A1]

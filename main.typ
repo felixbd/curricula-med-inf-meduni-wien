@@ -370,7 +370,7 @@
 | *`II`*  | #xy("A", 1) | #xy("B", 1) | #xy("C", 1) | #xy("D", 1) | #xy("F", 1) | #xy("DS", 1) | #xy("MA", 1) |  #get-sem-results(1).cp cp |
 | *`III`* | #xy("A", 2) | #xy("B", 2) | #xy("C", 2) | #xy("D", 2) | #xy("F", 2) | #xy("DS", 2) | #xy("MA", 2) |  #get-sem-results(2).cp cp |
 | *`IV`*  | #xy("A", 3) | #xy("B", 3) | #xy("C", 3) | #xy("D", 3) | #xy("F", 3) | #xy("DS", 3) | #xy("MA", 3) |  #get-sem-results(3).cp cp |
-| $sum$   | #block-cp("A") | #block-cp("B") | #block-cp("C") | #block-cp("D") | #block-cp("F") | #block-cp("DS") | #block-cp("MA")  | #current / 120 #p6 |
+| $sum$   | #block-cp("A")  \ #text(fill: red)[*+6 ECTS*] | #block-cp("B") | #block-cp("C") | #block-cp("D") | #block-cp("F") | #block-cp("DS") | #block-cp("MA")  | #current / 120 #p6 |
 | #stack(dir: ltr, spacing: 1fr, [nc's: #h(1mm) #sem-ncs], text(weight: "bold")[#current-proc%], [nc: ~ #total-nc] )  | < | < | < | < | < | < | < | < |
     ]
   ]
