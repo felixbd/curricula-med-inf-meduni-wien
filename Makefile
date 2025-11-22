@@ -1,3 +1,5 @@
+# typst c --help | grep -A 6 -- --timings
+# typst c main.typ --timings --jobs 1
 
 # nix --extra-experimental-features "nix-command flakes" run github:typst/typst -- compile \
 #  --pdf-standard a-1b \  # or use a-3b
@@ -5,6 +7,9 @@
 
 c:
 	typst compile main.typ
+
+report:
+	typst c main.typ --timings --jobs 1
 
 w:
 	typst watch main.typ

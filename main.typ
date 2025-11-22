@@ -5,6 +5,7 @@
 #import cosmos.fancy: *
 
 
+
 #let shadowed(dark-mode: false, ..args) = shadowed-original(
   radius: 4pt,
   inset: 12pt,    
@@ -32,10 +33,10 @@
  
 
 #set page(
-  "a4",
+  // "a4",
+  // flipped: true,
   width: auto,
   height: auto,
-  flipped: true,
   margin: 1.5cm
 )
 
@@ -55,40 +56,39 @@
 #let in_progress(x, ..args) = my-box(color: orange, ..args)[#x]
 
 
+// === LOAD DATA ====================================================================
+
+
 #let data = toml("main.toml")
 
-#let include-in-progress = data.at("include_in_progress", default: false)
-
 #let include-failed = data.at("include_failed", default: false)
+#let include-in-progress = data.at("include_in_progress", default: true)
 
 #let data = {
-  if include-failed {
-    data
-  } else {
-    let temp = data.remove("sem")
+  let sem = data.remove("sem")
 
-    let abc = range(temp.len())
-      .map(i => {
-        let fuu = temp.at(i)
-        
-        fuu.insert(
-          "course",
-          temp
-            .at(i)
-            .at("course", default: ())
-            .filter(e => e.note < 5)
-        )
-
-        fuu        
-        }
+  data.insert(
+    "sem",
+    sem.map(entry => {
+      entry.insert(
+        "course",
+        entry.at("course", default: ())
+          .filter(c =>
+            // include-in-progress
+            (include-in-progress or c.note != 0)
+            and
+            // include-failed
+            (include-failed or c.note < 5)
+          )
       )
-    
-    data.insert("sem", abc)
-    data
-  }
+      entry
+    })
+  )
+
+  data
 }
 
-
+// TODO maybe do a optimised search ...
 #let get-lecture-from-key(key) = {
   key.split(".").fold(none, (acc, key) => {
     if acc == none {
@@ -103,9 +103,17 @@
 #let get-name(key) = get-lecture-from-key(key).name
 #let get-cp(key) = get-lecture-from-key(key).ects
 
+
+// takes lecture eg. (code: "a.a1.b", note: 2, kfk: true)  ...
+// returns formated string
 #let format-name-and-cp(x) = {
-  x.code + " " + str(get-cp(x.code)) +  "cp\n" +  get-name(x.code) + "\nn:" + str(x.note)
+  x.code + " " + str(
+    get-cp(x.code)
+  ) + "cp" + if x.at("ps", default: false) {
+    "\n! projekt stud. !"
+  } + "\n" +  get-name(x.code) + "\nn:" + str(x.note)
 }
+
 
 #let get-freifach-with-group(current-sem) = {
   current-sem
@@ -166,7 +174,7 @@
   let grades = temp.map(e => e.note)
 
   (get-grade-status(grades).last())(stroke: black, width: 99%)[  
-    - [#get-grade-status(grades).first()] *#k* | #lecture \ versuch: #versuch ~ ~ note: #grades
+    - [#get-grade-status(grades).first()] *#k* | #lecture \ versuch: *#versuch* ~ ~ note: *#grades.join($->$)*
   ]
 }
 
@@ -224,11 +232,23 @@
     ) 
   }
     
-  let kfk-bool-map = current-sem.course.map( (e) => { e.at("kfk", default: false) } )
-  let temp = kfk-bool-map.zip(current-sem.course)
+  let temp = course
+    .map(e =>  e.at("kfk", default: false))
+    .zip(current-sem.course)
+    
   let kfk-vls = temp.filter(e => e.first()).map(e => e.last())
-  let normal-vls = temp.filter(x => not x.first()).map(e => e.last())
 
+  let frei-zip = current-sem.course
+    .map(e => e.at("frei", default: false))
+    .zip(current-sem.course)
+    
+  let frei-vls = frei-zip.filter(e => e.first()).map(e => e.last())
+  
+  let normal-vls = temp
+    .filter(x => not x.first())
+    .map(e => e.last())
+    .filter(x => not x.at("frei", default: false))
+  
   (
     "A": filter-for-group("A", normal-vls),
     
@@ -239,7 +259,11 @@
 
     "C": filter-for-group("C", normal-vls),
     "D": filter-for-group("D", normal-vls),
-    "F": filter-for-group("F", normal-vls),
+    
+    "F": frei-vls.map(e =>
+      format-name-and-cp(e)
+    ) + filter-for-group("F", normal-vls),
+    
     "DS": filter-for-group("DS", normal-vls),
     "MA": filter-for-group("MA", normal-vls),
     
@@ -297,6 +321,8 @@
 
 // get the content of (x: current block, y: current semester) (for the table)
 #let get-table-cell-content(c, sem-nr) = {
+
+  
   get-sem-results(calc.clamp(sem-nr, 0, 3))
     .at(c)
     .map(e =>  if e.first() == "-" { "-" }
@@ -377,6 +403,9 @@
   ), digits: 4)
 
 
+
+// ======================================================================
+
 #datetime.today().display("[day] [month repr:short] [year]")
 
 #align(center)[
@@ -399,10 +428,10 @@
 
 
 #set page(
-  "a4",
-  width: auto,
-  height: 25cm,
-  flipped: true,
+  // "a4",
+  width: 25cm,
+  height: auto,
+  // flipped: true,
   margin: 1.5cm,
 )
 
@@ -445,7 +474,18 @@ Als Teil des Masterstudiums sind demnach die restlichen drei zu wählen
     get-grade-cp-name-from-lecture-key("A.A3"),
     get-grade-cp-name-from-lecture-key("A.A4"),
   ),
-  get-grade-cp-name-from-lecture-key("A.A5"),
+
+
+  
+  stack(
+    dir: ltr, spacing: 2cm,
+    get-grade-cp-name-from-lecture-key("A.A5"),
+    three-line-table()[
+      | total ects     |
+      | -------------- |
+      | #block-cp("A") (+ 6 auflage) |
+    ]
+  ),
 )
 
 
@@ -462,7 +502,17 @@ Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt 
 
 === Pflichtmodul Modul
 
-#get-grade-cp-name-from-lecture-key("B.B1")
+
+#stack(
+  dir: ltr, spacing: 2cm,
+  get-grade-cp-name-from-lecture-key("B.B1"),
+  three-line-table()[
+    | total ects     |
+    | -------------- |
+    | #block-cp("B") |
+  ]
+)
+
 
 === KfK fächer
 
@@ -548,7 +598,18 @@ oder Lehrveranstaltungen, *die der gewählten Kernfachkombination zugeordnet sin
 
 === Pflichtmodul:
 
-#get-grade-cp-name-from-lecture-key("C.C1")
+
+
+#stack(
+  dir: ltr, spacing: 2cm,
+  get-grade-cp-name-from-lecture-key("C.C1"),
+  three-line-table()[
+    | total ects     |
+    | -------------- |
+    | #block-cp("C") |
+  ]
+)
+
 
 
 === Wahlmodule:
@@ -582,7 +643,16 @@ Module oder Lehrveranstaltungen, *die der gewählten Kernfachkombination zugeord
 
 === Pflichtmodul:
 
-#get-grade-cp-name-from-lecture-key("D.D1")
+
+#stack(
+  dir: ltr, spacing: 2cm,
+  get-grade-cp-name-from-lecture-key("D.D1"),
+  three-line-table()[
+    | total ects     |
+    | -------------- |
+    | #block-cp("D") |
+  ]
+)
 
 
 === Wahlmodule:
