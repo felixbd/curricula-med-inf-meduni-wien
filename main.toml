@@ -1,5 +1,5 @@
 include_in_progress = true
-include_failed = false
+include_failed = true
 
 [[sem]]
 id = "I"

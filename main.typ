@@ -5,23 +5,21 @@
 #import cosmos.fancy: *
 
 
-
-#let shadowed(dark-mode: false, ..args) = shadowed-original(
-  radius: 4pt,
-  inset: 12pt,    
-  fill: if dark-mode { gray.darken(90%) } else { white },
-  ..args
+#let shadowed(..args) = shadowed-original(
+  radius: 4pt, inset: 12pt, fill: white, ..args
 )
 
-#set text(font: (
-  "Fira Sans",
-  "Atkinson Hyperlegible Next",
-  "Atkinson Hyperlegible",
-  "Libertinus Serif")
+#set text(font:
+  (
+    "Fira Sans",
+    "Atkinson Hyperlegible Next",
+    "Atkinson Hyperlegible",
+    "Libertinus Serif"
+  )
 )
 
 #set par(justify: true)
-  
+
 #show: checklist.with(
   marker-map: (
     " ": sym.ballot,
@@ -30,11 +28,8 @@
     "/": sym.slash.double
   )
 )
- 
 
 #set page(
-  // "a4",
-  // flipped: true,
   width: auto,
   height: auto,
   margin: 1.5cm
@@ -74,10 +69,7 @@
         "course",
         entry.at("course", default: ())
           .filter(c =>
-            // include-in-progress
-            (include-in-progress or c.note != 0)
-            and
-            // include-failed
+            (include-in-progress or c.note != 0) and
             (include-failed or c.note < 5)
           )
       )
@@ -99,10 +91,8 @@
   })
 }
 
-
 #let get-name(key) = get-lecture-from-key(key).name
 #let get-cp(key) = get-lecture-from-key(key).ects
-
 
 // takes lecture eg. (code: "a.a1.b", note: 2, kfk: true)  ...
 // returns formated string
@@ -173,8 +163,10 @@
   
   let grades = temp.map(e => e.note)
 
-  (get-grade-status(grades).last())(stroke: black, width: 99%)[  
-    - [#get-grade-status(grades).first()] *#k* | #lecture \ versuch: *#versuch* ~ ~ note: *#grades.join($->$)*
+  (get-grade-status(grades).last())(stroke: black, width: 99%)[
+    - [#get-grade-status(grades).first()] *#k* | #lecture
+     \ versuch: *#versuch* ~ ~ note:
+     *#grades.map(e => str(e)).join([~ $->$ ~])*
   ]
 }
 
@@ -194,7 +186,9 @@
   #let vls = if k.split(".").len() == 3 {
     (k.split(".").last(), )
   } else {
-    data.at(block).at(lv).keys().filter(i => not i in ("name", "ects", "type", "versuch"))
+    data.at(block).at(lv).keys().filter(i =>
+      not i in ("name", "ects", "type", "versuch")
+    )
   }
 
   #if vls == () {
@@ -409,7 +403,7 @@
 #datetime.today().display("[day] [month repr:short] [year]")
 
 #align(center)[
-  #text(size: 15pt)[*KfK Bioinformatik*]
+  #text(size: 15pt)[*Felix's _med. inf._ studium*]
   #shadowed(radius: .4cm)[  
     #tablem(ignore-second-row: false)[
 | #align(center)[*Medizinische Informatik \ C U R R I C U L A ~ ~ ~ 30. Mitteilungsblatt ~ ~ ~ Nr. 33*] | < | < | < | < | < | < | < | < |
@@ -438,12 +432,11 @@
 
 = Pflicht- und Wahlmodule mit Lehrveranstaltungen
 
-#shadowed[
 Dieser Block wird erweitert durch eine Liste von Lehrveranstaltungen der Technischen Universität Wien,
 die gleichwertig zu den oben gelisteten Modulen gewählt werden können. Dafür ist eine Mitbelegung
 an der Technischen Universität notwendig. Die Liste wird jedes Studienjahr spätestens ein Monat vor
 Beginn des Wintersemesters von der Curriculumdirektion öffentlich gemacht.
-]
+
 
 == A. Grundlagen 18 ECTS
 
@@ -456,9 +449,9 @@ Beginn des Wintersemesters von der Curriculumdirektion öffentlich gemacht.
 ]
 ]
 
-Aus den folgenden Modulen sind drei Module zu wählen, die nicht bereits im Rahmen des
+Aus den folgenden Modulen *sind drei Module zu wählen*, die nicht bereits im Rahmen des
 Bachelorstudiums der Informatik (Ausprägungsfach Medizininformatik) absolviert wurden. Im Zuge der
-Gleichwertigkeitsprüfung nach §3 können bis zu zwei Module dieses Blocks vorgeschrieben werden.
+*Gleichwertigkeitsprüfung* nach §3 *können bis zu zwei Module* dieses Blocks *vorgeschrieben* werden.
 Als Teil des Masterstudiums sind demnach die restlichen drei zu wählen
 
 
@@ -520,16 +513,13 @@ Inhalte der Spezialisierung transportieren; siehe *Abschnitt D*) dar, *ergänzt 
   dir: ltr, spacing: 5mm,
   stack(
     dir: ttb, spacing: 5mm,
-    // todo-light
-    // done(stroke: black)[
-    
-    my-box(color: green.darken(45%), stroke: black)[
-    // in_progress(stroke: black)[
-      
-      //#text(fill: green.darken(40%), size: 15pt)[
+    todo-light(
+      stroke: (
+        paint: gradient.linear(..color.map.rainbow),
+        thickness: 2pt, dash: "dashed", cap: "round")
+    )[
         *KfK Bioinformatik:*
-      //]
-      
+
       #get-grade-cp-name-from-lecture-key("C.C4")
       #get-grade-cp-name-from-lecture-key("D.D2")
       #rect(stroke: 1mm, radius: 2mm)[
