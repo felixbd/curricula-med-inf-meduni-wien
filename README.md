@@ -1,16 +1,18 @@
 # curricula-med-inf-meduni-wien
 
+### see: [pdf](./main.pdf)
+
+---
+
 > [!WARNING]
 >
 > Since the Winter Semester 2026, a new curriculum applies to the Master's programme in Medical Informatics.
 > Students following the previous curriculum should refer to the repository version immediately preceding
 > the following commit, as it is the last version that fully satisfies the requirements
-> of the previous study programme: `5ee2783`
+> of the previous study programme: `1c6c239`
 >
 
-
-### see: [pdf](./main.pdf)
-
+---
 
 > [!NOTE]
 >
@@ -21,6 +23,7 @@
 > then use typst.app (locally via CLI or online) to generate the PDF.
 >
 
+---
 
 ![thumbnail](./thumbnail-page-1.png)
 

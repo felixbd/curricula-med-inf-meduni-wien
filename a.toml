@@ -1,0 +1,174 @@
+[[block]]
+name = "Prüfungsfach „Foundations of Medical Informatics“ (30 ECTS)"
+
+    [[lectures]]
+    name = "Modul „Advanced Software Engineering in the Biomedical Context“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Advanced Software Engineering in the Biomedical Context (MUW)", "3,0/2,0 PR Advanced Software Engineering in the Biomedical Context (TUW)"]
+
+    [[lectures]]
+    name = "Modul „Biological Basis of Disease“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Biological Basis of Disease, Part I: Anatomy and Histology (MUW)", "3,0/2,0 VU Biological Basis of Disease, Part II: Physiology and Pathology (MUW)"]
+
+    [[lectures]]
+    name = "Modul „Introduction to Medical Data Science and Analytics“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Statistical Basis of Medical Data Science (MUW)", "3,0/2,0 VU Foundations of Medical Machine Learning (TUW)"]
+
+    [[lectures]]
+    name = "Modul „Introduction to Digital Health“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Digital Health Foundation and Data Governance (MUW)", "3,0/2,0 VU Human-Computer Interaction for Health and Wellbeing (TUW)"]
+
+    [[lectures]]
+    name = "Modul „Practice of Medicine“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Practice of Medicine (MUW)", "Prüfungsfach „Biological and Medical Principles“"]
+
+[[block]]
+name = "Prüfungsfach „Biological and Medical Principles“"
+
+    [[lectures]]
+    name = "*Modul „Bioinformatics“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Bioinformatics (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Computational Neuroscience“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Computational Neuroscience (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Introduction to Molecular Biology“ (6,0 ECTS)"
+    items = ["3,0/2,0 VO Introduction to Molecular Biology, part 1 (MUW)", "3,0/2,0 VO Introduction to Molecular Biology, part 2 (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Introduction to Neuroscience“ (6,0 ECTS)"
+    items = ["4,0/2,5 VO Introduction to Neuroscience (MUW)", "2,0/1,5 SE Introduction to Neuroscience (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Neuroinformatics“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Neuroinformatics (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Prosthetics and Control Theory“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Prosthetics (MUW)", "3,0/2,0 VU Control Theory in Medicine (MUW)", "Prüfungsfach „Data, Policy, and Health Informatics“"]
+
+
+[[block]]
+name = "Prüfungsfach „Data, Policy, and Health Informatics“"
+
+    [[lectures]]
+    name = "*Modul „Advanced Database Systems“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Advanced Database Systems (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „AI Ethics“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU AI Ethics (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Data Stewardship“ (6,0 ECTS)"
+    items = ["3,0/2,0 VO Data Stewardship (TUW)", "3,0/2,0 UE Data Stewardship (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Methodological Foundations of Public Health Informatics“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Outcomes Research (MUW)", "3,0/2,0 VU Epidemiology (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Public Health Policy and Healthcare Management“ (6,0 ECTS)"
+    items = ["3,0/2,0 VO Public Health Policy (MUW)", "3,0/2,0 VO Health Care Management (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Responsible Digital Ethics“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Responsible Digital Ethics (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Standardized Health Information Management“ (6,0 ECTS)"
+    items = ["1,5/1,0 VU Standardized electronic health records modeling (MUW)", "1,5/1,0 VU Standardized health information exchange and terminologies (MUW)", "1,5/1,0 VU Standardized common data models for secondary use (MUW)", "1,5/1,0 VO Medical image management standards (MUW)", "Prüfungsfach „Machine Learning and Intelligent Health Systems“"]
+
+[[block]]
+name = "Prüfungsfach „Machine Learning and Intelligent Health Systems“"
+
+    [[lectures]]
+    name = "*Modul „Advanced Machine Learning in Healthcare“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Advanced Machine Learning in Healthcare: Part 1 (TUW)", "3,0/2,0 VU Advanced Machine Learning in Healthcare: Part 2 (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Medical Signal Processing and Imaging“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Biosignal Processing (MUW)", "3,0/2,0 VU Medical Imaging and Image Processing (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Computer Vision“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Computer Vision (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Generative AI, General AI“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Generative AI, General AI (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Logic-based Artificial Intelligence“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Logic-based Artificial Intelligence (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „ML in Medical Imaging and Precision Medicine“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU ML in Medical Imaging and Precision Medicine (MUW)"]
+
+    [[lectures]]
+    name = "*Modul „Modeling and Simulation for Medical Informatics“ (6,0 ECTS)"
+    items = ["3,0/2,0 VU Modeling and Simulation (TUW)", "3,0/2,0 VU Modeling and Simulation in Health Technology Assessment (TUW)", "Prüfungsfach „Human-Centered Technologies and Visualization in", "Healthcare“"]
+
+[[block]]
+name = "Prüfungsfach „Human-Centered Technologies and Visualization in Healthcare“"
+
+    [[lectures]]
+    name = "*Modul „Artifact-based Design“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Artifact-based Design (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Assistive Technologies“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Assistive Technologies (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Human-Centered AI“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Human-Centered AI (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Information Visualization“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Information Visualization (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Medical Visualization and Visual Analytics“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Medical Visualization and Visual Analytics (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Virtual and Augmented Reality“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Virtual and Augmented Reality (TUW)"]
+
+    [[lectures]]
+    name = "*Modul „Wellbeing Technologies“ (6,0 ECTS)"
+    items = ["6,0/4,0 VU Wellbeing Technologies (TUW)", "Prüfungsfach „Free Electives“"]
+
+[[block]]
+name = "Prüfungsfach „Free Electives“"
+
+    [[lectures]]
+    name = "Modul „Freie Wahlfächer und Transferable Skills“ (9,0 ECTS)"
+    items = ["Prüfungsfach „Seminar, Project, and Advanced Topics in Medical", "Informatics“"]
+
+
+[[block]]
+name = "Prüfungsfach „Seminar, Project, and Advanced Topics in Medical Informatics“"
+
+    [[lectures]]
+    name = "Modul „Seminar in Medical Informatics“ (3,0 ECTS)"
+    items = ["3,0/2,0 SE Seminar in Medical Informatics"]
+
+    [[lectures]]
+    name = "Modul „Project in Medical Informatics“ (6,0 ECTS)"
+    items = ["6,0/4,0 PR Project in Medical Informatics"]
+
+    [[lectures]]
+    name = "*Modul „Advanced Topics In Medical Informatics“ (min. 3,0 ECTS)"
+    items = []
+
+    [[lectures]]
+    name = "*Prüfungsfach „Masterarbeit“"
+    items = [
+        "1,5/1,0 SE Seminar für Diplomand_innen",
+        "27,0 ECTS Masterarbeit",
+        "1,5 ECTS Kommissionelle Abschlussprüfung"
+    ]
