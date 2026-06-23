@@ -146,15 +146,6 @@ beschreibung = "SoSe 2026"
   # ps = true
   kfk = true
 
-  # [[sem.course]]
-  # code = "M.eGS-VA-MKW-24"
-  # note = 0
-  # date = "23.06.2026"
-
-  [[sem.course]]
-  code = "M.eGS-PM-04"
-  note = 0
-  date = "23.06.2026"
 
 
 # [[sem]]
@@ -175,14 +166,8 @@ beschreibung = "SoSe 2026"
 name = "Mitbelegung an anderen Unis"
 cp = 6
 
-  [M.eGS-VA-MKW-24]
-  name = "Der menschengemachte Klimawandel: Ursachen, Effekte und Lösungswege"
-  type = "VO"
-  ects = 3
-  group = "F"
-
   [M.eGS-PM-04]
-  name = "Projektmanagement"
+  name = "Projektmanagement oder so ..."
   type = "VO"
   ects = 3
   group = "F"

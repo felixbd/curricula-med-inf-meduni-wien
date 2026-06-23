@@ -1,10 +1,17 @@
 # curricula-med-inf-meduni-wien
 
+> [!WARNING]
+>
+> Since the Winter Semester 2026, a new curriculum applies to the Master's programme in Medical Informatics.
+> Students following the previous curriculum should refer to the repository version immediately preceding
+> the following commit, as it is the last version that fully satisfies the requirements
+> of the previous study programme:
+>
+> `xxxxxx`
+>
+
+
 ### see: [pdf](./main.pdf)
-
-<!-- ~~` -->
-
-<!-- `~~ -->
 
 
 > [!NOTE]
@@ -15,9 +22,6 @@
 > To adjust the generated PDF document, please modify the first few lines of the TOML file,
 > then use typst.app (locally via CLI or online) to generate the PDF.
 >
-
-
-#### https://www.meduniwien.ac.at/web/fileadmin/content/serviceeinrichtungen/studienabteilung/studierende/medizinische_informatik/pdf/30_Mitteilungsblatt_27062024_Curriculumaenderung_Medizinische_Informatik.pdf
 
 
 ![thumbnail](./thumbnail-page-1.png)

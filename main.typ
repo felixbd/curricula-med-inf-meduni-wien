@@ -503,7 +503,7 @@ https://github.com/felixbd/curricula-med-inf-meduni-wien
       table.cell(colspan: 4)[ *Pflicht- und Wahlmodulen* ],
       table.cell(rowspan: 2)[
         #set align(horizon)
-        *Freifächer*#footnote[https://oncourse.uni-bremen.de/] \ (6 ECTS)
+        *Freifächer* \ (6 ECTS)
       ],
       table.cell(rowspan: 2)[
         #set align(horizon)
