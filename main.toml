@@ -101,7 +101,7 @@ beschreibung = "SoSe 2026"
 
   [[sem.course]]
   code = "A.A2.a"
-  note = 4.0
+  note = 3.0
   frei = true
 
   [[sem.course]]
