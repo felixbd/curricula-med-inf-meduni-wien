@@ -14,6 +14,7 @@
 
 = Blocks with lectures
 
+
 #for block in data.at("block", default: none) [
   + #block.name
     #for lecture in block.at("lectures", default: none) [

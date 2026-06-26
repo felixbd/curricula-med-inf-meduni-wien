@@ -51,7 +51,7 @@
 #let include-failed = data.at("include_failed", default: false)
 #let include-in-progress = data.at("include_in_progress", default: true)
 
-#let auflagen-ects = text(weight: "bold", fill: red)[+6 auflage]
+// #let auflagen-ects = text(weight: "bold", fill: red)[+6 auflage]
 
 #let data = {
   let sem = data.remove("sem")
@@ -326,7 +326,7 @@
   [#current / #goal]
 }
 
-#let total = 126  // 120 + 6cp auflage
+#let total = 120
 #let current = sem-results.map(e => e.cp).sum()
 
 #let current-proc = calc.round(
@@ -512,7 +512,7 @@ https://github.com/felixbd/curricula-med-inf-meduni-wien
       [ ~ *Masterarbeit* ~ ],
       table.cell(rowspan: 2)[ ECTS \ $ sum $ ],
       table.cell(rowspan: 2)[ #rotate(90deg, reflow: true)[number of \ scheduled \ lectures]],
-      [Block A.\ *Grundlagen* \ 18cp ~ #auflagen-ects ],
+      [Block A.\ *Grundlagen* \ 18cp],
       [Block B.\ *KfK* \ 24cp ],
       [Block C.\ *Angewant* \ 12cp ],
       [Block D.\ *Interdiszi. Inf.* \ 24cp ],
@@ -561,9 +561,8 @@ https://github.com/felixbd/curricula-med-inf-meduni-wien
 
     table.footer(
       [ $sum$ ],
-      [ #block-cp("A") #text(fill: red)[*+6*] $=>$ 24],
-      ..("B", "C", "D", "F", "DS", "MA").map(e => block-cp(e)),
-      [#current / 120 \ #auflagen-ects],
+      ..("A", "B", "C", "D", "F", "DS", "MA").map(e => block-cp(e)),
+      [#current / 120],
       [  ],
       [],
       table.cell(colspan: 8, stroke: (left: none, right: none),
@@ -720,12 +719,7 @@ Beginn des Wintersemesters von der Curriculumdirektion öffentlich gemacht.
 ]
 
 
-#text(size: 13pt, weight: "bold")[ //, font: "Fira Code")[
-  #callout([
-    #auflagen-ects extra aus Block A \
-    => 18 + 6 = 24 ects total
-  ])
-]
+
 
 
 Aus den folgenden Modulen *sind drei Module zu wählen*, die nicht bereits im Rahmen des
@@ -755,7 +749,7 @@ Als Teil des Masterstudiums sind demnach die restlichen drei zu wählen
     three-line-table()[
       | total ects     |
       | -------------- |
-      | #block-cp("A") (+ 6 auflage) |
+      | #block-cp("A")  |
     ]
   ),
 )
