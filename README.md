@@ -9,7 +9,9 @@
 > Since the Winter Semester 2026, a new curriculum applies to the Master's programme in Medical Informatics.
 > Students following the previous curriculum should refer to the repository version immediately preceding
 > the following commit, as it is the last version that fully satisfies the requirements
-> of the previous study programme: `1c6c239`
+> of the previous study programme: `todo ...`
+>
+> see: [./new-curriculum/](./new-curriculum/)
 >
 
 ---
