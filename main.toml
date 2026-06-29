@@ -107,6 +107,7 @@ beschreibung = "SoSe 2026"
   [[sem.course]]
   code = "B.B1.b"
   note = 0.0
+  date = "02.07.2026"
 
   [[sem.course]]
   code = "B.B1.a"
@@ -139,7 +140,7 @@ beschreibung = "SoSe 2026"
   note = 0.0
   versuch = 2
   # ps = true
-  date = "06.07.2026"
+  date = "03.07.2026"
   frei = true
 
   [[sem.course]]
